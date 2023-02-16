@@ -9,13 +9,13 @@ import javax.persistence.*
 @Entity
 @Table(name = "customer" ,uniqueConstraints = [UniqueConstraint(name = "email", columnNames = ["email"])])
 data class Customer(
-    @Column(length = 30)
+    @Column(length = 60)
     var customerUsername: String? =null,
     @Column(name = "email" , nullable = false , length = 30)
     var email: String? =null,
-    @Column(length = 30)
+    @Column(length = 60)
     var pass: String? = null,
-    @Column(length = 20)
+    @Column(length = 30)
     var mobile: String? = null,
     @Lob
     var image: ByteArray? = null,
@@ -26,7 +26,7 @@ data class Customer(
     var updatedAt: Date = Date(),
     var profileComplete:Boolean = false,
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length = 30)
     var role: Role?=null,
     var token:String? = null ,
     @Id
