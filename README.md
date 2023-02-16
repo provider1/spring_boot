@@ -1,3 +1,3 @@
 # spring_boot
 
-SpringBoot Application with JWT users authentication based on e-commerce system
+SpringBoot Application E-commerce System using JSON web token users authentication  
