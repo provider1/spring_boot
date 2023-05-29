@@ -34,10 +34,7 @@ class AuthController {
         return  ResponseEntity.ok(auth.name)
     }
     
-     @PostMapping("/getCustomerId")
-    fun getCustomerId(email:String): ResponseEntity<String> {
-        return  ResponseEntity.ok(auth.name)
-    }
+   
 
 
 }
