@@ -33,6 +33,11 @@ class AuthController {
     fun hello(auth : Authentication): ResponseEntity<String> {
         return  ResponseEntity.ok(auth.name)
     }
+    
+     @PostMapping("/getCustomerId")
+    fun getCustomerId(email:String): ResponseEntity<String> {
+        return  ResponseEntity.ok(auth.name)
+    }
 
 
 }
