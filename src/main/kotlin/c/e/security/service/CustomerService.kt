@@ -30,6 +30,8 @@ class CustomerService {
 
         myUtil.info(customer.pass!!)
         customerRepository.save(customer)
+        customer.id = customerRepository.getCustomeridByemail(customer.email!!)
+
         return ResponseEntity<Any>(customer, HttpStatus.ACCEPTED)
     }
 
