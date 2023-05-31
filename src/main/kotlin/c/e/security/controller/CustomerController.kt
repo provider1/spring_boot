@@ -3,6 +3,8 @@ package c.e.security.controller
 import c.e.security.model.Customer
 import c.e.security.model.Login
 import c.e.security.service.CustomerService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -22,14 +24,10 @@ class CustomerController() {
     @Autowired
     private lateinit var customerService: CustomerService
 
-
-
-
     @GetMapping("/get-all")
     fun getCustomers(): Any {
         return customerService.getCustomers()
     }
-
     @Transactional
     @PostMapping("/login")
     fun loginCustomer(@RequestBody login: Login): ResponseEntity<Customer> {
@@ -69,12 +67,21 @@ class CustomerController() {
 
     }
 
-
     @Transactional
     @DeleteMapping("/delete/{id}")
     fun deleteCustomer(@PathVariable("id") id: Int): ResponseEntity<Any> {
         return customerService.deleteCustomer(id)
     }
+
+      @Transactional
+    @GetMapping("/get-customer/{email}")
+    fun getCustomerIdByEmail(@PathVariable("email") email: String): ResponseEntity<Customer> {
+          val logger: Logger = LoggerFactory.getLogger("-------")
+          logger.info(customerService.getCustomerIdByEmail(email).toString())
+        return customerService.getCustomerIdByEmail(email)
+    }
+
+
 
     }
 

@@ -4,6 +4,8 @@ import c.e.security.model.Customer
 import c.e.security.model.Role
 import c.e.security.repository.CustomerRepository
 import c.e.security.service.JwtService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -26,15 +28,10 @@ class AuthenticationService {
     @Autowired
     private val authenticationManager: AuthenticationManager? = null
 
-    fun register(request: Customer): AuthenticationResponse? {
-        val customer = Customer()
-        customer.email = request.email.toString()
-        customer.customerUsername = request.username
-        customer.pass = passwordEncoder!!.encode(request.pass)
+    fun register(customer: Customer): AuthenticationResponse? {
+        customer.pass = passwordEncoder!!.encode(customer.pass)
         customer.role = Role.USER
         repository!!.save(customer)
-
-
         val jwtToken = jwtService!!.generateToken(customer)
         return AuthenticationResponse(jwtToken)
 

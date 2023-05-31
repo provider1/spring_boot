@@ -1,5 +1,7 @@
 package c.e.security
 
+import c.e.security.repository.CustomerRepository
+import c.e.security.util.MyUtil
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 import org.springframework.boot.runApplication
@@ -18,6 +20,10 @@ fun main(args: Array<String>) {
 
 //	val context = runApplication<SecurityApplication>(*args)
 //	val customer = context.getBean(Customer::class.java)
+//      lateinit var customerRepository: CustomerRepository
+//
+//    val customer =  customerRepository.findByEmail()
+//    MyUtil().info()
 
 }
 

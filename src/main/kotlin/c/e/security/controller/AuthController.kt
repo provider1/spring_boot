@@ -20,8 +20,8 @@ class AuthController {
     val jwtService: JwtService? = null
 
     @PostMapping("/register")
-    fun register( @RequestBody request: Customer ): ResponseEntity<String> {
-        return ResponseEntity.ok(service!!.register(request)!!.token)
+    fun register( @RequestBody customer: Customer ): ResponseEntity<String> {
+        return ResponseEntity.ok(service!!.register(customer)!!.token)
     }
 
     @PostMapping("/authenticate")

@@ -9,21 +9,21 @@ import javax.persistence.*
 @Entity
 @Table(name = "customer" ,uniqueConstraints = [UniqueConstraint(name = "email", columnNames = ["email"])])
 data class Customer(
-    @Column(length = 60)
+    @Column( length = 30)
     var customerUsername: String? =null,
     @Column(name = "email" , nullable = false , length = 30)
     var email: String? =null,
-    @Column(length = 60)
+    @Column(length = 80)
     var pass: String? = null,
     @Column(length = 30)
     var mobile: String? = null,
     @Lob
     var image: ByteArray? = null,
-    @Temporal(TemporalType.DATE)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    var createdAt: Date = Date(),
-    @Temporal(TemporalType.DATE)
-    var updatedAt: Date = Date(),
+//    @Temporal(TemporalType.DATE)
+////    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    var createdAt: Date = Date(),
+//    @Temporal(TemporalType.DATE)
+//    var updatedAt: Date = Date(),
     var profileComplete:Boolean = false,
     @Enumerated(EnumType.STRING)
     @Column(length = 30)

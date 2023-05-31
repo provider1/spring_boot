@@ -4,6 +4,8 @@ import c.e.security.model.Customer
 import c.e.security.model.Login
 import c.e.security.repository.CustomerRepository
 import c.e.security.util.MyUtil
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
@@ -28,9 +30,8 @@ class CustomerService {
             return ResponseEntity<Any>(myUtil.getResponseFailedMessage(customer), HttpStatus.BAD_REQUEST)
         customer.pass = myUtil.crypt(customer.pass!!)
 
-        myUtil.info(customer.pass!!)
+       // myUtil.info(customer.pass!!)
         customerRepository.save(customer)
-        customer.id = customerRepository.getCustomeridByemail(customer.email!!)
 
         return ResponseEntity<Any>(customer, HttpStatus.ACCEPTED)
     }
@@ -76,24 +77,12 @@ class CustomerService {
         return ResponseEntity<Any>(customer.email +" Deleted", HttpStatus.ACCEPTED)
     }
 
+    fun getCustomerIdByEmail(email: String): ResponseEntity<Customer> {
+        val customerId =customerRepository.findCustomerByEmail(email.lowercase())
 
+        return ResponseEntity<Customer>(customerId, HttpStatus.ACCEPTED)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 }

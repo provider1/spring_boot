@@ -45,6 +45,9 @@ class JwtAuthenticationFilter : OncePerRequestFilter() {
         }
 
         val jwt = authHeader
+//        val jwt = authHeader.substring(7)
+
+        logger.info(jwt)
         val userEmail = jwtService.extractEmail(jwt);
 
         if (userEmail != null && SecurityContextHolder.getContext().authentication  == null) {
