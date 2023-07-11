@@ -15,39 +15,44 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 repositories {
 	mavenCentral()
 }
+configurations {
+	all {
+		exclude("org.springframework.boot","spring-boot-starter-logging")
+	}
+}
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-	//runtimeOnly("com.mysql:mysql-connector-j")
-	
-	// https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	runtimeOnly("com.mysql:mysql-connector-j")
+
+	implementation ("org.springframework.boot:spring-boot-starter-log4j2")
+
 	implementation("com.mysql:mysql-connector-j:8.0.32")
 
 
-// https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
 	implementation("org.mariadb.jdbc:mariadb-java-client:3.1.2")
 
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
 
-//	testImplementation("org.springframework.security:spring-security-test")
-	implementation("org.springframework.boot:spring-boot-starter-security")
+	//Testing
+	testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
 
 	implementation("org.springframework.security:spring-security-crypto:5.7.5")
 
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 
-// customize authorization sever
+// customize authorization server
 	implementation("org.springframework.cloud:spring-cloud-starter-oauth2:2.2.5.RELEASE")
 //	import("org.springframework.cloud:spring-cloud-dependencies:2022.0.0")
-
 	implementation("org.springframework.cloud:spring-cloud-starter-bootstrap:4.0.0")
-
 
 // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
 //	implementation("javax.persistence:javax.persistence-api:2.2")
@@ -55,6 +60,13 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 	implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+
+	implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
+
+
+	implementation("com.h2database:h2:2.1.214")
+
+
 }
 
 tasks.withType<KotlinCompile> {

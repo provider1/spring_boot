@@ -1,4 +1,4 @@
-package c.e.security.model
+package c.e.security.entity
 
 import javax.persistence.*
 
@@ -9,7 +9,7 @@ data class Order(
     var customerId: Int? = null,
     @Lob
     var items: ArrayList<CartProduct> = ArrayList(),
-    @OneToOne(cascade = arrayOf (CascadeType.MERGE , CascadeType.REMOVE   ) , orphanRemoval=true)
+    @OneToOne(cascade = [CascadeType.MERGE, CascadeType.REMOVE], orphanRemoval=true)
     var address: Address = Address() ,
     @Column(length = 20)
     var title: String = "",

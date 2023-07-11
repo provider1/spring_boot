@@ -1,6 +1,6 @@
 package c.e.security.controller
 
-import c.e.security.model.Order
+import c.e.security.entity.Order
 import c.e.security.service.OrderService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -21,6 +21,8 @@ class OrderController {
         return orderService.addOrder(order)
     }
 
+
+
     @Transactional
     @GetMapping("/get-all")
     fun getAllOrders(): List<Order> {
@@ -35,8 +37,9 @@ class OrderController {
 
     @Transactional
     @DeleteMapping("/delete/{orderId}")
-    fun deleteOrderById(@PathVariable orderId: Int) {
+    fun deleteOrderById(@PathVariable orderId: Int):String {
         orderService.deleteOrderById(orderId)
+        return "order is Deleted "
     }
 
     @Transactional

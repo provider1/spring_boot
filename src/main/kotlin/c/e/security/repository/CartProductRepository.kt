@@ -1,6 +1,6 @@
 package c.e.security.repository
 
-import c.e.security.model.CartProduct
+import c.e.security.entity.CartProduct
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository

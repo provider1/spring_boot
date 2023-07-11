@@ -1,4 +1,4 @@
-package c.e.security.auth
+package c.e.security.model
 
 data class RegisterRequest(
      val username:String? = null,

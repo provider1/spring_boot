@@ -1,15 +1,18 @@
-#spring:
-#  datasource:
-#    profile: production
-#    username: root
-#    url: jdbc:mysql://localhost:3306/production?createDatabaseIfNotExist=true
-#    password: root
-#  jpa:
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#    hibernate:
-#      ddl-auto: update
-#
-#welcome:
-#  message: Welcome to our welcome page sssss !!
+
+
+spring:
+  datasource:
+    profile: production
+    username: root
+    url: jdbc:mariadb://localhost:3306/store?createDatabaseIfNotExist=true
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB106Dialect
+    hibernate:
+      ddl-auto: update
+
+
+server:
+  port: 8081

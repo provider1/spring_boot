@@ -1,6 +1,6 @@
 package c.e.security.service
 
-import c.e.security.model.Order
+import c.e.security.entity.Order
 import c.e.security.repository.OrderRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

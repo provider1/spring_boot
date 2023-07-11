@@ -1,11 +1,9 @@
 package c.e.security.service
 
-import c.e.security.model.Customer
+import c.e.security.entity.Customer
 import c.e.security.model.Login
 import c.e.security.repository.CustomerRepository
 import c.e.security.util.MyUtil
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
@@ -26,9 +24,9 @@ class CustomerService {
 
     @Transactional(propagation = Propagation.MANDATORY)
     fun registerCustomer(customer: Customer): ResponseEntity<Any> {
-        if (!myUtil.userDataIsValid(customer))
+        if (!myUtil.customerDetailsAreNotNull(customer))
             return ResponseEntity<Any>(myUtil.getResponseFailedMessage(customer), HttpStatus.BAD_REQUEST)
-        customer.pass = myUtil.crypt(customer.pass!!)
+        customer.pass = myUtil.crypt(customer.pass)
 
        // myUtil.info(customer.pass!!)
         customerRepository.save(customer)
@@ -37,20 +35,21 @@ class CustomerService {
     }
 
     @Transactional
-    fun login(login: Login): ResponseEntity<Customer> {
+    fun login(login: Login): Customer {
 
         return try {
             val customer = customerRepository.findCustomerByEmail(login.email.lowercase())
             myUtil.info(customer.toString())
-            if (myUtil.comparePassword(login.password, customer.pass!!)) {
-                ResponseEntity(customer, HttpStatus.ACCEPTED)
+            if (myUtil.comparePassword(login.password, customer.pass)) {
+                 customer
             } else
-                ResponseEntity(null, HttpStatus.UNAUTHORIZED)
+                return  Customer()
 
         } catch (e: EmptyResultDataAccessException) {
-            ResponseEntity(null, HttpStatus.NOT_FOUND)
+         return  Customer()
         }
     }
+
 
     fun setProfileImageAndMobileNumber(id: Int, mobile: String, file: MultipartFile): Customer {
         val saveCustomer: Customer = customerRepository.findById(id).orElseThrow()

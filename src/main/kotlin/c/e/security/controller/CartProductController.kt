@@ -1,6 +1,6 @@
 package c.e.security.controller
 
-import c.e.security.model.CartProduct
+import c.e.security.entity.CartProduct
 import c.e.security.service.CartProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -24,41 +24,32 @@ class CartProductController {
         return ResponseEntity(cartProductResponse, HttpStatus.OK)
     }
 
-
+    @PostMapping("/add-test")
+    fun addCartProductTest(@RequestBody cartProduct: CartProduct): CartProduct {
+        return cartProductService.addCartProduct(cartProduct)
+    }
     @GetMapping("/get-all")
-    fun getCartProducts(): ResponseEntity<ArrayList<CartProduct>> {
-        val cartProductsResponse = cartProductService.getCartProducts()
-        return ResponseEntity(cartProductsResponse, HttpStatus.OK)
+    fun getCartProductsByCustomerId(): ArrayList<CartProduct> {
+        return cartProductService.getCartProducts()
     }
 
-
-    @GetMapping("/get/{customerId}")
-    fun getCartProducts(@PathVariable("customerId") customerId: Int): ResponseEntity<ArrayList<CartProduct>> {
-        val cartProductsResponse = cartProductService.getCartProducts(customerId)
-        return ResponseEntity(cartProductsResponse, HttpStatus.OK)
+    @GetMapping("/get-by-customerId/{customerId}")
+    fun getCartProductsByCustomerId(@PathVariable("customerId") customerId: Int): List<CartProduct> {
+        return cartProductService.getCartProducts(customerId)
     }
 
     @GetMapping("/get-by-product-id/{productId}")
-    fun getCartProductsByProductId(@PathVariable("productId")productId:Int ):ArrayList<CartProduct>{
+    fun getCartProductsByProductId(@PathVariable("productId")productId:Int ):List<CartProduct>{
         return cartProductService.getCartProductsByproductId(productId)
     }
-
     @Transactional
     @DeleteMapping("/delete-all/customer-id/{customerId}")
-    fun deleteAllCartProductsByCustomerId(@PathVariable("customerId") customerId: Int): ResponseEntity<String> {
-        val cartProductsResponse = cartProductService.deleteAllCartProductsByCustomerId(customerId)
-        return ResponseEntity(cartProductsResponse, HttpStatus.OK)
+    fun deleteAllCartProductsByCustomerId(@PathVariable("customerId") customerId: Int): String {
+        return  cartProductService.deleteAllCartProductsByCustomerId(customerId)
     }
-
-
-
-
     @Transactional
     @DeleteMapping("/delete/cart-product-id/{cartProductId}")
-    fun deleteCartProductByCartProductId(@PathVariable("cartProductId") cartProductId: Int): ResponseEntity<String> {
-        val cartProductsResponse = cartProductService.deleteCartProductsByCartProductId(cartProductId)
-        return ResponseEntity(cartProductsResponse, HttpStatus.OK)
+    fun deleteCartProductByCartProductId(@PathVariable("cartProductId") cartProductId: Int): String {
+        return cartProductService.deleteCartProductsByCartProductId(cartProductId)
     }
-
-
 }

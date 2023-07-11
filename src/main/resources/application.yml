@@ -1,16 +1,10 @@
-#spring:
-#  profiles:
-#    active: dev
-#
-#server:
-#  port: 1234
-#
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
-#        exclude: "beans"
+spring:
+  profiles:
+    active: dev
+
+
+
+
 
  
 

@@ -1,4 +1,4 @@
-package c.e.security.model
+package c.e.security.entity
 
 import javax.persistence.*
 

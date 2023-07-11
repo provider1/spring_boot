@@ -1,6 +1,6 @@
 package c.e.security.repository
 
-import c.e.security.model.Address
+import c.e.security.entity.Address
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
@@ -15,7 +15,7 @@ interface AddressRepository : CrudRepository<Address, Int> {
 
     @Modifying
     @Query(value =  "delete from address   where customer_id = ?1" , nativeQuery = true)
-    fun deleteAllAddressesBycustomerId(customerId: Int)
+    fun deleteAllAddressesCustomerId(customerId: Int)
 
 
 

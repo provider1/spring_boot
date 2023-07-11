@@ -1,22 +1,19 @@
 package c.e.security.service
 
-import c.e.security.model.CartProduct
+import c.e.security.entity.CartProduct
 import c.e.security.repository.CartProductRepository
 import c.e.security.util.MyUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.util.MultiValueMap
 
 
 @Service
 class CartProductService {
 
-
     val myUtil by lazy { MyUtil() }
 
     @Autowired
     private lateinit var cartProductRepository: CartProductRepository
-
 
     fun addCartProduct(cartProduct: CartProduct):CartProduct{
         return cartProductRepository.save(cartProduct)
@@ -42,7 +39,7 @@ class CartProductService {
         return "cart product is Deleted"
     }
 
-    fun getCartProductsByproductId(productId:Int):ArrayList<CartProduct>{
+    fun getCartProductsByproductId(productId:Int):List<CartProduct>{
         return cartProductRepository.findCartProductByproductId(productId)
     }
 

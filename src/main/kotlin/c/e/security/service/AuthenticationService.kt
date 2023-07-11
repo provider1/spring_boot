@@ -1,11 +1,10 @@
-package c.e.security.auth
+package c.e.security.service
 
-import c.e.security.model.Customer
-import c.e.security.model.Role
+import c.e.security.model.AuthenticationRequest
+import c.e.security.model.AuthenticationResponse
+import c.e.security.entity.Customer
+import c.e.security.entity.Role
 import c.e.security.repository.CustomerRepository
-import c.e.security.service.JwtService
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

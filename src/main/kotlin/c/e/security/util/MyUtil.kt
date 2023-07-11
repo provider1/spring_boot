@@ -1,6 +1,6 @@
 package c.e.security.util
 
-import c.e.security.model.Customer
+import c.e.security.entity.Customer
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.security.crypto.bcrypt.BCrypt
@@ -17,10 +17,10 @@ class MyUtil {
         logger.info(info)
     }
 
-    fun userDataIsValid(customer: Customer): Boolean {
+    fun customerDetailsAreNotNull(customer: Customer): Boolean {
         val array = arrayOf(customer.email, customer.customerUsername, customer.pass)
         array.forEach {
-            if (it!!.isEmpty())
+            if (it.isEmpty())
                 return false
         }
         return true
@@ -28,12 +28,12 @@ class MyUtil {
 
     fun getResponseFailedMessage(customer: Customer): String {
         var message = ""
-        if (customer.email!!.isEmpty())
-            message += "Response Failed :  Email is required !\n"
-        if (customer.pass!!.isEmpty())
-            message += "Response Failed :  Password is required !\n"
-        if (customer.customerUsername!!.isEmpty())
-            message += "Response Failed :  username is required !\n"
+        if (customer.email.isEmpty())
+            message = "Response Failed :  Email is required !\n"
+        if (customer.pass.isEmpty())
+            message = "Response Failed :  Password is required !\n"
+        if (customer.customerUsername.isEmpty())
+            message = "Response Failed :  username is required !\n"
         return message
     }
 

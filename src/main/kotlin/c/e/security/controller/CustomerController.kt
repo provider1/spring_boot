@@ -1,6 +1,6 @@
 package c.e.security.controller
 
-import c.e.security.model.Customer
+import c.e.security.entity.Customer
 import c.e.security.model.Login
 import c.e.security.service.CustomerService
 import org.slf4j.Logger
@@ -30,9 +30,11 @@ class CustomerController() {
     }
     @Transactional
     @PostMapping("/login")
-    fun loginCustomer(@RequestBody login: Login): ResponseEntity<Customer> {
+    fun loginCustomer(@RequestBody login: Login):Customer {
         return customerService.login(login)
     }
+
+
 
 
     @PostMapping(value = ["/upload/{id}/{mobile}"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])

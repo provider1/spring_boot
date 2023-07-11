@@ -22,12 +22,7 @@ class ApplicationConfig {
 
     @Bean
     fun userDetailsService(): UserDetailsService? {
-        return UserDetailsService { username: String ->
-            repository!!.findByEmail(username)
-                .orElseThrow { UsernameNotFoundException("User not found") }
-        }
-    }
-
+        return UserDetailsService { username: String ->  repository!!.findByEmail(username).orElseThrow { UsernameNotFoundException("User not found") }}}
     @Bean
     fun authenticationProvider(): AuthenticationProvider {
         val authProvider = DaoAuthenticationProvider()

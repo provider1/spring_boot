@@ -1,6 +1,6 @@
 package c.e.security.service
 
-import c.e.security.model.Address
+import c.e.security.entity.Address
 import c.e.security.repository.AddressRepository
 import c.e.security.util.MyUtil
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,12 +29,9 @@ class AddressService {
     fun getAddressByCustomerId(customerId: Int): ArrayList<Address> {
         return addressRepository.findAddressBycustomerId(customerId)
     }
-
-
-
     @Transactional
     fun deleteAllAddressesByCustomerId(customerId: Int) :String{
-        addressRepository.deleteAllAddressesBycustomerId(customerId)
+        addressRepository.deleteAllAddressesCustomerId(customerId)
         return "Address is Deleted"
     }
 

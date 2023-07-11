@@ -1,6 +1,6 @@
 package c.e.security.controller
 
-import c.e.security.model.Product
+import c.e.security.entity.Product
 import c.e.security.service.ProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -24,14 +24,24 @@ class ProductController {
     @PostMapping("/add")
     fun addProduct(@RequestBody product: Product): ResponseEntity<Product> {
 
-      return ResponseEntity(productService.addProduct(product) , HttpStatus.OK)
+        return ResponseEntity(productService.addProduct(product), HttpStatus.OK)
+
+    }
+
+
+    //Delete this function when you see it
+    @Transactional
+    @PostMapping("/add-test")
+    fun addProductTest(@RequestBody product: Product): Product {
+
+        return productService.addProduct(product)
 
     }
 
     @PostMapping(value = ["/upload-image/{id}"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     fun uploadProductImage(
-        @PathVariable("id") id: Int,
-        @RequestPart(value = "file") file: MultipartFile
+            @PathVariable("id") id: Int,
+            @RequestPart(value = "file") file: MultipartFile
     ): ResponseEntity<Product> {
 
         val product = productService.uploadProductImage(id, file)
@@ -45,9 +55,9 @@ class ProductController {
         return productService.getProducts()
     }
 
-    @GetMapping("/get/{customerId}")
-    fun getProductByCustomerId(@PathVariable("customerId") id:Int ): ResponseEntity<ArrayList<Product>> {
-        return ResponseEntity(productService.getProductByCustomerId(id), HttpStatus.OK)
+    @GetMapping("/get/{ownerId}")
+    fun getProductByOwnerId(@PathVariable("ownerId") id: Int): ResponseEntity<ArrayList<Product>> {
+        return ResponseEntity(productService.getProductByOwnerId(id), HttpStatus.OK)
     }
 
     @Transactional
@@ -58,8 +68,7 @@ class ProductController {
     }
 
 
-
-   @Transactional
+    @Transactional
     @DeleteMapping("/delete/product-id/{productId}")
     fun deleteProductById(@PathVariable("productId") productId: Int): ResponseEntity<String> {
         productService.deleteProductById(productId)
@@ -67,19 +76,12 @@ class ProductController {
     }
 
 
-
-@Transactional
+    @Transactional
     @PatchMapping("/update/product-id/{productId}/{productQuantity}")
-    fun updateProductQuantityById(@PathVariable("productId") productId: Int,@PathVariable("productQuantity") productQuantity: Int) {
-        productService.updateProductQuantityById(productId , productQuantity)
+    fun updateProductQuantityById(@PathVariable("productId") productId: Int, @PathVariable("productQuantity") productQuantity: Int) {
+        productService.updateProductQuantityById(productId, productQuantity)
 
     }
-
-
-
-
-
-
 
 
 }

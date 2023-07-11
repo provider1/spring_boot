@@ -1,4 +1,4 @@
-package c.e.security.model
+package c.e.security.entity
 
 import java.io.Serializable
 import javax.persistence.*

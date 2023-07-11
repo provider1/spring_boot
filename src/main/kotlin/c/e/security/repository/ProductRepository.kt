@@ -1,7 +1,6 @@
 package c.e.security.repository
 
-import c.e.security.model.Product
-import org.springframework.data.jpa.repository.JpaRepository
+import c.e.security.entity.Product
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Repository
 interface ProductRepository: CrudRepository<Product, Int> {
 
 
-    fun findProductByownerId(id:Int) :ArrayList<Product>
+    fun findProductByOwnerId(id:Int) :ArrayList<Product>
 
     fun deleteProductById(productId: Int)
 

@@ -1,6 +1,6 @@
 package c.e.security.service
 
-import c.e.security.model.Product
+import c.e.security.entity.Product
 import c.e.security.repository.ProductRepository
 import c.e.security.util.MyUtil
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,8 +18,7 @@ class ProductService {
     private lateinit var productRepository: ProductRepository
 
     fun addProduct(product: Product): Product {
-        val response = productRepository.save(product)
-        return response
+        return productRepository.save(product)
     }
 
 
@@ -44,8 +43,8 @@ class ProductService {
         return productRepository.findById(id).get()
     }
 
-    fun getProductByCustomerId(id: Int): ArrayList<Product> {
-        return productRepository.findProductByownerId(id)
+    fun getProductByOwnerId(id: Int): ArrayList<Product> {
+        return productRepository.findProductByOwnerId(id)
     }
 
     @Transactional

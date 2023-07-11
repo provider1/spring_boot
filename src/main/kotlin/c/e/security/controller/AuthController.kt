@@ -1,9 +1,8 @@
 package c.e.security.controller
 
-import c.e.security.auth.AuthenticationRequest
-import c.e.security.auth.AuthenticationService
-import c.e.security.auth.RegisterRequest
-import c.e.security.model.Customer
+import c.e.security.model.AuthenticationRequest
+import c.e.security.service.AuthenticationService
+import c.e.security.entity.Customer
 import c.e.security.service.JwtService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -16,8 +15,7 @@ class AuthController {
     @Autowired
     private val service: AuthenticationService? = null
 
-    @Autowired
-    val jwtService: JwtService? = null
+
 
     @PostMapping("/register")
     fun register( @RequestBody customer: Customer ): ResponseEntity<String> {
@@ -28,15 +26,6 @@ class AuthController {
     fun authenticate( @RequestBody request: AuthenticationRequest): ResponseEntity<String> {
         return ResponseEntity.ok(service!!.authenticate(request)!!.token)
     }
-
-    @GetMapping("/demo")
-    fun hello(auth : Authentication): ResponseEntity<String> {
-        return  ResponseEntity.ok(auth.name)
-    }
-    
-   
-
-
 }
 
 

@@ -1,11 +1,9 @@
 package c.e.security
 
-import c.e.security.model.Customer
-import c.e.security.repository.CustomerRepository
-import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
+
+//SpringBootTest: Spring boot test annotation actual load the application context for test environment
 @SpringBootTest
 class SecurityApplicationTests {
 
